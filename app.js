@@ -12,20 +12,14 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelect
   if(!ciq[name]||!ds[name]) return;
   const [ciq5,jobs5]=ciq[name], [ds5,dsPaid5]=ds[name];
   const ciqPeriod=document.querySelector('#ciq .period-oct1-ciq');
-  if(ciqPeriod){
-    let row=ciqPeriod.querySelector('.ciq1005');
-    if(!row){ row=document.createElement('div'); row.className='row ciq1005'; ciqPeriod.insertBefore(row,ciqPeriod.querySelector('.period-current-sum')); }
-    row.innerHTML=`<span>5/10</span><span>${jobs5}</span><span>RM${ciq5}</span><span>—</span>`;
-  }
+  if(ciqPeriod){let row=ciqPeriod.querySelector('.ciq1005');if(!row){row=document.createElement('div');row.className='row ciq1005';ciqPeriod.insertBefore(row,ciqPeriod.querySelector('.period-current-sum'));}row.innerHTML=`<span>5/10</span><span>${jobs5}</span><span>RM${ciq5}</span><span>—</span>`;}
   const dsPeriod=document.querySelector('#ds .period-oct1');
-  if(dsPeriod){
-    let row=dsPeriod.querySelector('.ds1005');
-    if(!row){ row=document.createElement('div'); row.className='row dsrow ds1005'; dsPeriod.insertBefore(row,dsPeriod.querySelector('.period-current-sum')); }
-    row.innerHTML=`<span>5/10</span><span>RM${ds5}</span><span>${dsPaid5?'✅':'—'}</span>`;
-  }
+  if(dsPeriod){let row=dsPeriod.querySelector('.ds1005');if(!row){row=document.createElement('div');row.className='row dsrow ds1005';dsPeriod.insertBefore(row,dsPeriod.querySelector('.period-current-sum'));}row.innerHTML=`<span>5/10</span><span>RM${ds5}</span><span>${dsPaid5?'✅':'—'}</span>`;}
   const ciqRows=[...document.querySelectorAll('#ciq .period-oct1-ciq .row:not(.h)')],dsRows=[...document.querySelectorAll('#ds .period-oct1 .dsrow:not(.h)')];
-  const ciqAmt=ciqRows.reduce((s,r)=>s+(Number((r.children[2]?.textContent||'').replace(/[^0-9.-]/g,''))||0),0),dsAmt=dsRows.reduce((s,r)=>s+(Number((r.children[1]?.textContent||'').replace(/[^0-9.-]/g,''))||0),0);
-  const ciqPaid=ciqRows.reduce((s,r)=>s+((r.children[3]?.textContent||'').includes('✅')?(Number((r.children[2]?.textContent||'').replace(/[^0-9.-]/g,''))||0):0),0),dsPaid=dsRows.reduce((s,r)=>s+((r.children[2]?.textContent||'').includes('✅')?(Number((r.children[1]?.textContent||'').replace(/[^0-9.-]/g,''))||0):0,0);
+  const ciqAmt=ciqRows.reduce((s,r)=>s+(Number((r.children[2]?.textContent||'').replace(/[^0-9.-]/g,''))||0),0);
+  const dsAmt=dsRows.reduce((s,r)=>s+(Number((r.children[1]?.textContent||'').replace(/[^0-9.-]/g,''))||0),0);
+  const ciqPaid=ciqRows.reduce((s,r)=>s+((r.children[3]?.textContent||'').includes('✅')?(Number((r.children[2]?.textContent||'').replace(/[^0-9.-]/g,''))||0):0),0);
+  const dsPaid=dsRows.reduce((s,r)=>s+((r.children[2]?.textContent||'').includes('✅')?(Number((r.children[1]?.textContent||'').replace(/[^0-9.-]/g,''))||0):0),0);
   const jobTotal=ciqRows.reduce((s,r)=>s+(Number(r.children[1]?.textContent)||0),0),paid=ciqPaid+dsPaid,total=ciqAmt+dsAmt;
   document.querySelectorAll('.period-current-sum').forEach(box=>[...box.querySelectorAll('p')].forEach(p=>{const label=p.querySelector('span')?.textContent||'',target=p.querySelector('b')||p.querySelectorAll('span')[1];if(!target)return;if(label==='CIQ 金额')target.textContent=`RM${ciqAmt}`;else if(label==='DS 金额')target.textContent=`RM${dsAmt}`;else if(label==='CIQ + DS 总金额')target.textContent=`RM${total}`;else if(label==='CIQ 工数')target.textContent=`${jobTotal} JOB`;else if(label==='已 PAID')target.textContent=`RM${paid}`;else if(label==='还剩金额')target.textContent=`RM${total-paid}`;}));
 })();
