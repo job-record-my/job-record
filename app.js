@@ -1,18 +1,20 @@
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')});
 
-// CIQ + DS 5/10/2026 — mapped strictly by employee header names in SP (D:AW).
+// 5/10/2026 — values mapped strictly from SP employee headers D:AX.
 (()=>{
+  // CIQ = [amount, jobs, paid]. PAID is true only for exact red (1,0,0).
   const ciq={
-    'XX':[0,0],'GUCCI':[460,0],'DI':[50,0],'WESLEY':[0,0],'EN':[0,0],'666':[0,0],'FAIRY':[0,0],'KUAT':[70,1],'JE':[0,0],'KIKI':[50,0],'UL76 (T)':[0,0],'SOON 1880':[0,0],'ROTI':[120,1],'MCD':[0,0],'SHAWN':[0,0],'VNK':[60,0],'JBPARADISE':[0,0],'MICHAEL':[80,2],'SEXPARADISE':[0,0],'VELLFIRE':[160,0],'AMY':[0,0],'MASELI':[60,0],'KELLY':[0,0],'LUCKY':[0,0],'4U':[0,0],'JB LOVER':[0,0],'JUN':[0,0],'XM':[0,0],'ANGEL V':[0,0],'KOPITIAM':[0,0],'BB天空':[0,0],'JI':[0,0],'VIB':[80,0],'REX':[0,0],'NANCY':[0,0],'AH LI':[40,0],'QTX':[0,1],'YAOYING':[0,0],'GEMOK':[0,0],'HH':[0,0],'PARTY GIRLS':[240,5],'ROLEX':[40,0],'XIAO AI':[0,0],'BAO':[0,0],'YJY':[0,0],'SIANG':[50,0]
+    'XX':[0,0,0],'GUCCI':[460,0,0],'DI':[50,0,0],'WESLEY':[0,0,0],'EN':[0,0,0],'666':[0,0,0],'FAIRY':[0,0,0],'KUAT':[70,1,0],'JE':[0,0,0],'KIKI':[50,0,1],'UL76 (T)':[0,0,0],'SOON 1880':[0,0,0],'ROTI':[120,1,0],'MCD':[0,0,0],'SHAWN':[0,0,0],'VNK':[60,0,0],'JBPARADISE':[0,0,0],'MICHAEL':[80,2,0],'SEXPARADISE':[0,0,0],'VELLFIRE':[160,0,0],'AMY':[0,0,0],'MASELI':[60,0,0],'KELLY':[0,0,0],'LUCKY':[0,0,0],'4U':[0,0,0],'JB LOVER':[0,0,0],'JUN':[0,0,0],'XM':[0,0,0],'ANGEL V':[0,0,0],'KOPITIAM':[0,0,0],'BB天空':[0,0,0],'JI':[0,0,0],'VIB':[0,0,0],'REX':[80,0,0],'NANCY':[0,0,0],'AH LI':[0,0,0],'QTX':[40,1,0],'YAOYING':[0,0,0],'GEMOK':[0,0,0],'HH':[0,0,0],'PARTY GIRLS':[240,5,0],'ROLEX':[40,0,0],'XIAO AI':[0,0,0],'BAO':[0,0,0],'YJY':[0,0,0],'SIANG':[50,0,0]
   };
+  // Existing DS 5/10 values are retained; this update is CIQ-only.
   const ds={
     'XX':[0,0],'GUCCI':[0,0],'DI':[0,0],'WESLEY':[0,0],'EN':[0,0],'666':[300,0],'FAIRY':[0,0],'KUAT':[0,0],'JE':[0,0],'KIKI':[0,0],'UL76 (T)':[0,0],'SOON 1880':[0,0],'ROTI':[0,0],'MCD':[0,0],'SHAWN':[0,0],'VNK':[80,0],'JBPARADISE':[0,0],'MICHAEL':[0,0],'SEXPARADISE':[0,0],'VELLFIRE':[50,0],'AMY':[0,0],'MASELI':[0,0],'KELLY':[0,0],'LUCKY':[0,0],'4U':[0,0],'JB LOVER':[0,0],'JUN':[0,0],'XM':[0,0],'ANGEL V':[0,0],'KOPITIAM':[0,0],'BB天空':[0,0],'JI':[0,0],'VIB':[0,0],'REX':[0,0],'NANCY':[0,0],'AH LI':[0,0],'QTX':[0,0],'YAOYING':[0,0],'GEMOK':[0,0],'HH':[0,0],'PARTY GIRLS':[0,0],'ROLEX':[200,0],'XIAO AI':[0,0],'BAO':[0,0],'YJY':[0,0],'SIANG':[0,0]
   };
   const name=(document.querySelector('.head h1')?.textContent||'').trim().toUpperCase();
   if(!ciq[name]||!ds[name]) return;
-  const [ciq5,jobs5]=ciq[name], [ds5,dsPaid5]=ds[name];
+  const [ciq5,jobs5,ciqPaid5]=ciq[name], [ds5,dsPaid5]=ds[name];
   const ciqPeriod=document.querySelector('#ciq .period-oct1-ciq');
-  if(ciqPeriod){let row=ciqPeriod.querySelector('.ciq1005');if(!row){row=document.createElement('div');row.className='row ciq1005';ciqPeriod.insertBefore(row,ciqPeriod.querySelector('.period-current-sum'));}row.innerHTML=`<span>5/10</span><span>${jobs5}</span><span>RM${ciq5}</span><span>—</span>`;}
+  if(ciqPeriod){let row=ciqPeriod.querySelector('.ciq1005');if(!row){row=document.createElement('div');row.className='row ciq1005';ciqPeriod.insertBefore(row,ciqPeriod.querySelector('.period-current-sum'));}row.innerHTML=`<span>5/10</span><span>${jobs5}</span><span>RM${ciq5}</span><span>${ciqPaid5?'✅':'—'}</span>`;}
   const dsPeriod=document.querySelector('#ds .period-oct1');
   if(dsPeriod){let row=dsPeriod.querySelector('.ds1005');if(!row){row=document.createElement('div');row.className='row dsrow ds1005';dsPeriod.insertBefore(row,dsPeriod.querySelector('.period-current-sum'));}row.innerHTML=`<span>5/10</span><span>RM${ds5}</span><span>${dsPaid5?'✅':'—'}</span>`;}
   const ciqRows=[...document.querySelectorAll('#ciq .period-oct1-ciq .row:not(.h)')],dsRows=[...document.querySelectorAll('#ds .period-oct1 .dsrow:not(.h)')];
