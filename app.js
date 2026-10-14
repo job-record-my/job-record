@@ -5,6 +5,7 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelect
 const p2DS12=[0,0,60,0,0,0,0,0,0,0,0,0,0,0,160,0,0,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30,150,0,0,0,0,0],p2DS12Paid=[];
 const p2CIQ12=[40,40,0,0,0,0,0,40,0,0,0,0,0,0,50,80,0,330,0,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,120,0,0,0,130,0,0,0,80,0,0],p2CIQ12Paid=[],p2CIQ12Jobs={"KUAT":1,"ROTI":0,"MICHAEL":8,"QTX":3,"PARTY GIRLS":2};
 const p2DS13=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,0,0,0,0,0,0,0,0,60,150,0,0,0,0,0],p2DS13Paid=[];
+const p2CIQ13=[40,0,230,0,0,0,0,240,40,0,0,0,0,0,0,0,0,170,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,120,140,0,40,290,0,0,0,0,0,0],p2CIQ13Paid=[],p2CIQ13Jobs={"KUAT":3,"ROTI":0,"MICHAEL":4,"QTX":3,"PARTY GIRLS":5};
 const p2CIQ11=[0,220,0,0,0,0,0,60,0,160,0,0,0,0,0,0,0,180,0,0,0,0,0,0,80,0,0,0,0,0,0,0,0,0,0,0,40,40,160,0,1190,0,0,0,0,50,0],p2CIQ11Paid=["KIKI"],p2CIQ11Jobs={"KUAT":1,"ROTI":0,"MICHAEL":4,"QTX":1,"PARTY GIRLS":20};
 const p2PanelCIQ=document.querySelector('#ciq'),p2PanelDS=document.querySelector('#ds');
 if(p2PanelCIQ&&p2PanelDS){
@@ -36,6 +37,13 @@ if(p2PanelCIQ&&p2PanelDS){
     p2CIQ.insertBefore(p2CRow12,p2CIQ.querySelector('.period-oct2-sum'));
   }
   p2CRow12.innerHTML='<span>12/10</span><span>'+(p2CIQ12Jobs[n]||0)+'</span><span>RM'+p2CIQ12[k]+'</span><span>'+(p2CIQ12Paid.includes(n)?'✅':'—')+'</span>';
+  let p2CRow13=p2CIQ.querySelector('.ciq1013');
+  if(!p2CRow13){
+    p2CRow13=document.createElement('div');
+    p2CRow13.className='row ciq1013';
+    p2CIQ.insertBefore(p2CRow13,p2CIQ.querySelector('.period-oct2-sum'));
+  }
+  p2CRow13.innerHTML='<span>13/10</span><span>'+(p2CIQ13Jobs[n]||0)+'</span><span>RM'+p2CIQ13[k]+'</span><span>'+(p2CIQ13Paid.includes(n)?'✅':'—')+'</span>';
   let p2Row=p2DS.querySelector('.ds1011');
   if(!p2Row){
     p2Row=document.createElement('div');
