@@ -18,6 +18,7 @@ const p2DS18=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0,180,0,0,0,0,0,0,0,0,0,0,0,180,0,0
 const p2CIQ18=[0,0,0,0,0,0,0,0,0,0,0,220,100,0,0,50,120,370,0,0,0,0,0,0,0,0,0,0,0,0,0,60,0,40,0,0,0,0,0,0,280,0,0,0,0,50,0],p2CIQ18Paid=[],p2CIQ18Jobs={"KUAT":0,"ROTI":1,"MICHAEL":8,"QTX":0,"PARTY GIRLS":7};
 const p2DS19=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],p2DS19Paid=[];
 const p2CIQ19=[40,160,0,0,0,0,0,100,40,0,30,0,0,0,0,40,0,90,0,150,0,0,0,0,0,40,0,0,0,50,710,0,0,0,0,0,50,0,0,0,0,0,0,0,0,120,0],p2CIQ19Paid=[],p2CIQ19Jobs={"KUAT":2,"ROTI":0,"MICHAEL":2,"QTX":1,"PARTY GIRLS":0};
+const p2DS20=[0,0,80,0,0,80,0,0,0,0,0,0,0,0,0,0,50,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],p2DS20Paid=[];
 const p2CIQ11=[0,220,0,0,0,0,0,60,0,160,0,0,0,0,0,0,0,180,0,0,0,0,0,0,80,0,0,0,0,0,0,0,0,0,0,0,40,40,160,0,1190,0,0,0,0,50,0],p2CIQ11Paid=["KIKI"],p2CIQ11Jobs={"KUAT":1,"ROTI":0,"MICHAEL":4,"QTX":1,"PARTY GIRLS":20};
 const p2PanelCIQ=document.querySelector('#ciq'),p2PanelDS=document.querySelector('#ds');
 if(p2PanelCIQ&&p2PanelDS){
@@ -161,6 +162,13 @@ if(p2PanelCIQ&&p2PanelDS){
     p2DS.insertBefore(p2Row19,p2DS.querySelector('.period-oct2-sum'));
   }
   p2Row19.innerHTML='<span>19/10</span><span>RM'+p2DS19[k]+'</span><span>'+(p2DS19Paid.includes(n)?'✅':'—')+'</span>';
+  let p2Row20=p2DS.querySelector('.ds1020');
+  if(!p2Row20){
+    p2Row20=document.createElement('div');
+    p2Row20.className='row dsrow ds1020';
+    p2DS.insertBefore(p2Row20,p2DS.querySelector('.period-oct2-sum'));
+  }
+  p2Row20.innerHTML='<span>20/10</span><span>RM'+p2DS20[k]+'</span><span>'+(p2DS20Paid.includes(n)?'✅':'—')+'</span>';
   const p2Num=t=>Number((t||'').replace(/[^0-9.-]/g,''))||0;
   const p2CR=[...p2CIQ.querySelectorAll('.row:not(.h)')];
   const p2DR=[...p2DS.querySelectorAll('.dsrow:not(.h)')];
