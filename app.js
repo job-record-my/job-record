@@ -22,6 +22,8 @@ const p2DS20=[0,0,80,0,0,80,0,0,0,0,0,0,0,0,0,0,50,40,0,0,0,0,0,0,0,0,0,0,0,0,0,
 const p2CIQ20=[0,0,0,0,0,0,0,70,40,0,0,0,0,0,0,40,50,120,0,120,0,0,0,0,0,0,0,0,0,50,0,0,0,0,0,0,0,40,0,0,190,0,0,0,0,50,0],p2CIQ20Paid=[],p2CIQ20Jobs={"KUAT":1,"ROTI":0,"MICHAEL":3,"QTX":0,"PARTY GIRLS":1};
 const p2CIQ11=[0,220,0,0,0,0,0,60,0,160,0,0,0,0,0,0,0,180,0,0,0,0,0,0,80,0,0,0,0,0,0,0,0,0,0,0,40,40,160,0,1190,0,0,0,0,50,0],p2CIQ11Paid=["KIKI"],p2CIQ11Jobs={"KUAT":1,"ROTI":0,"MICHAEL":4,"QTX":1,"PARTY GIRLS":20};
 const p3CIQ22=[120,0,0,0,0,0,0,70,40,0,210,0,0,0,0,40,40,240,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,80,40,0,0,0,0,0,0,0,50,0],p3CIQ22Paid=[],p3CIQ22Jobs={"KUAT":1,"ROTI":0,"MICHAEL":6,"QTX":2,"PARTY GIRLS":0};
+const p3CIQ23=[0,0,0,0,0,0,0,0,0,0,200,0,0,0,0,30,0,170,0,0,0,0,0,0,0,0,0,0,0,160,0,0,170,20,0,0,290,0,0,40,360,0,0,0,0,50,0],p3CIQ23Paid=[],p3CIQ23Jobs={"KUAT":0,"ROTI":0,"MICHAEL":4,"QTX":7,"PARTY GIRLS":9};
+const p3DS23=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],p3DS23Paid=[];
 const p3CIQ21=[30,0,0,0,0,0,0,0,0,0,0,0,0,90,190,50,50,340,0,40,0,0,0,0,0,0,0,60,0,0,0,0,0,0,0,0,40,70,0,0,150,0,0,0,0,70,0],p3CIQ21Paid=[],p3CIQ21Jobs={"KUAT":0,"ROTI":0,"MICHAEL":8,"QTX":0,"PARTY GIRLS":4};
 const p3DS22=[50,0,0,0,0,200,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,260,0,0,0,0,0,0,0,0,0,0,0,0,250,0,0,0,0,0],p3DS22Paid=[];
 const p3DS21=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,0,0],p3DS21Paid=[];
@@ -235,6 +237,20 @@ if(p2PanelCIQ&&p2PanelDS){
     p3CIQ.insertBefore(p3CRow22,p3CIQ.querySelector('.period-oct3-sum'));
   }
   p3CRow22.innerHTML='<span>22/10</span><span>'+(p3CIQ22Jobs[n]||0)+'</span><span>RM'+p3CIQ22[k]+'</span><span>'+(p3CIQ22Paid.includes(n)?'✅':'—')+'</span>';
+  let p3CRow23=p3CIQ.querySelector('.ciq1023');
+  if(!p3CRow23){
+    p3CRow23=document.createElement('div');
+    p3CRow23.className='row ciq1023';
+    p3CIQ.insertBefore(p3CRow23,p3CIQ.querySelector('.period-oct3-sum'));
+  }
+  p3CRow23.innerHTML='<span>23/10</span><span>'+(p3CIQ23Jobs[n]||0)+'</span><span>RM'+p3CIQ23[k]+'</span><span>'+(p3CIQ23Paid.includes(n)?'✅':'—')+'</span>';
+  let p3Row23=p3DS.querySelector('.ds1023');
+  if(!p3Row23){
+    p3Row23=document.createElement('div');
+    p3Row23.className='row dsrow ds1023';
+    p3DS.insertBefore(p3Row23,p3DS.querySelector('.period-oct3-sum'));
+  }
+  p3Row23.innerHTML='<span>23/10</span><span>RM'+p3DS23[k]+'</span><span>'+(p3DS23Paid.includes(n)?'✅':'—')+'</span>';
   const p3CR=[...p3CIQ.querySelectorAll('.row:not(.h)')];
   const p3DR=[...p3DS.querySelectorAll('.dsrow:not(.h)')];
   const p3CA=p3CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
