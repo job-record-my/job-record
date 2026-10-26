@@ -26,6 +26,8 @@ const p3CIQ23=[0,0,0,0,0,0,0,0,0,0,200,0,0,0,0,30,0,170,0,0,0,0,0,0,0,0,0,0,0,16
 const p3DS23=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],p3DS23Paid=[];
 const p3CIQ24=[0,0,140,0,0,0,0,0,50,80,0,0,100,0,80,110,0,620,0,340,0,0,0,0,30,0,0,0,0,0,0,0,0,0,0,0,90,240,220,40,90,80,0,0,0,0,0],p3CIQ24Paid=[],p3CIQ24Jobs={"KUAT":0,"ROTI":2,"MICHAEL":15,"QTX":0,"PARTY GIRLS":3};
 const p3DS24=[0,0,260,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0],p3DS24Paid=[];
+const p3CIQ25=[50,50,100,0,0,0,0,50,0,0,60,0,40,0,0,0,0,40,0,210,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,90,0,0,0,30,0,0,0,0,0,0],p3CIQ25Paid=[],p3CIQ25Jobs={"KUAT":1,"ROTI":1,"MICHAEL":1,"QTX":2,"PARTY GIRLS":1};
+const p3DS25=[0,0,0,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],p3DS25Paid=[];
 const p3CIQ21=[30,0,0,0,0,0,0,0,0,0,0,0,0,90,190,50,50,340,0,40,0,0,0,0,0,0,0,60,0,0,0,0,0,0,0,0,40,70,0,0,150,0,0,0,0,70,0],p3CIQ21Paid=[],p3CIQ21Jobs={"KUAT":0,"ROTI":0,"MICHAEL":8,"QTX":1,"PARTY GIRLS":4};
 const p3DS22=[50,0,0,0,0,200,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,260,0,0,0,0,0,0,0,0,0,0,0,0,250,0,0,0,0,0],p3DS22Paid=[];
 const p3DS21=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,0,0],p3DS21Paid=[];
@@ -267,6 +269,20 @@ if(p2PanelCIQ&&p2PanelDS){
     p3DS.insertBefore(p3Row24,p3DS.querySelector('.period-oct3-sum'));
   }
   p3Row24.innerHTML='<span>24/10</span><span>RM'+p3DS24[k]+'</span><span>'+(p3DS24Paid.includes(n)?'✅':'—')+'</span>';
+  let p3CRow25=p3CIQ.querySelector('.ciq1025');
+  if(!p3CRow25){
+    p3CRow25=document.createElement('div');
+    p3CRow25.className='row ciq1025';
+    p3CIQ.insertBefore(p3CRow25,p3CIQ.querySelector('.period-oct3-sum'));
+  }
+  p3CRow25.innerHTML='<span>25/10</span><span>'+(p3CIQ25Jobs[n]||0)+'</span><span>RM'+p3CIQ25[k]+'</span><span>'+(p3CIQ25Paid.includes(n)?'✅':'—')+'</span>';
+  let p3Row25=p3DS.querySelector('.ds1025');
+  if(!p3Row25){
+    p3Row25=document.createElement('div');
+    p3Row25.className='row dsrow ds1025';
+    p3DS.insertBefore(p3Row25,p3DS.querySelector('.period-oct3-sum'));
+  }
+  p3Row25.innerHTML='<span>25/10</span><span>RM'+p3DS25[k]+'</span><span>'+(p3DS25Paid.includes(n)?'✅':'—')+'</span>';
   const p3CR=[...p3CIQ.querySelectorAll('.row:not(.h)')];
   const p3DR=[...p3DS.querySelectorAll('.dsrow:not(.h)')];
   const p3CA=p3CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
