@@ -29,6 +29,7 @@ const p3DS24=[0,0,260,0,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 const p3CIQ25=[50,50,100,0,0,0,0,50,0,0,60,0,40,0,0,0,0,40,0,210,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,90,0,0,0,30,0,0,0,0,0,0],p3CIQ25Paid=[],p3CIQ25Jobs={"KUAT":1,"ROTI":1,"MICHAEL":1,"QTX":2,"PARTY GIRLS":1};
 const p3DS25=[0,0,0,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],p3DS25Paid=[];
 const p3CIQ26=[0,0,0,0,0,0,40,0,0,0,150,0,0,0,0,100,0,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,50,0,30,0,0,0,0,0,0],p3CIQ26Paid=[],p3CIQ26Jobs={"KUAT":0,"ROTI":0,"MICHAEL":3,"QTX":0,"PARTY GIRLS":0};
+const p3CIQ27=[0,220,150,0,0,0,0,110,0,0,420,0,0,0,0,0,0,180,0,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,30,0,0,0,0,0,0],p3CIQ27Paid=[],p3CIQ27Jobs={"KUAT":2,"ROTI":0,"MICHAEL":4,"QTX":0,"PARTY GIRLS":1};
 const p3CIQ21=[30,0,0,0,0,0,0,0,0,0,0,0,0,90,190,50,50,340,0,40,0,0,0,0,0,0,0,60,0,0,0,0,0,0,0,0,40,70,0,0,150,0,0,0,0,70,0],p3CIQ21Paid=[],p3CIQ21Jobs={"KUAT":0,"ROTI":0,"MICHAEL":8,"QTX":1,"PARTY GIRLS":4};
 const p3DS22=[50,0,0,0,0,200,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,260,0,0,0,0,0,0,0,0,0,0,0,0,250,0,0,0,0,0],p3DS22Paid=[];
 const p3DS21=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,0,0],p3DS21Paid=[];
@@ -291,6 +292,13 @@ if(p2PanelCIQ&&p2PanelDS){
     p3CIQ.insertBefore(p3CRow26,p3CIQ.querySelector('.period-oct3-sum'));
   }
   p3CRow26.innerHTML='<span>26/10</span><span>'+(p3CIQ26Jobs[n]||0)+'</span><span>RM'+p3CIQ26[k]+'</span><span>'+(p3CIQ26Paid.includes(n)?'✅':'—')+'</span>';
+  let p3CRow27=p3CIQ.querySelector('.ciq1027');
+  if(!p3CRow27){
+    p3CRow27=document.createElement('div');
+    p3CRow27.className='row ciq1027';
+    p3CIQ.insertBefore(p3CRow27,p3CIQ.querySelector('.period-oct3-sum'));
+  }
+  p3CRow27.innerHTML='<span>27/10</span><span>'+(p3CIQ27Jobs[n]||0)+'</span><span>RM'+p3CIQ27[k]+'</span><span>'+(p3CIQ27Paid.includes(n)?'✅':'—')+'</span>';
   const p3CR=[...p3CIQ.querySelectorAll('.row:not(.h)')];
   const p3DR=[...p3DS.querySelectorAll('.dsrow:not(.h)')];
   const p3CA=p3CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
