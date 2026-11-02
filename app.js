@@ -37,6 +37,7 @@ const p3CIQ31=[0,80,310,70,0,0,0,0,0,0,80,40,50,0,150,0,0,160,0,90,0,0,0,0,30,12
 const p3CIQ21=[30,0,0,0,0,0,0,0,0,0,0,0,0,90,190,50,50,340,0,40,0,0,0,0,0,0,0,60,0,0,0,0,0,0,0,0,40,70,0,0,150,0,0,0,0,70,0],p3CIQ21Paid=[],p3CIQ21Jobs={"KUAT":0,"ROTI":0,"MICHAEL":8,"QTX":1,"PARTY GIRLS":4};
 const p3DS22=[50,0,0,0,0,200,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,260,0,0,0,0,0,0,0,0,0,0,0,0,250,0,0,0,0,0],p3DS22Paid=[];
 const p3DS21=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,0,0],p3DS21Paid=[];
+const p4CIQ1=[0,40,0,0,0,0,0,70,0,0,0,0,150,0,0,110,170,120,0,0,0,0,0,0,200,110,0,60,0,60,0,0,0,60,0,0,120,0,0,0,100,0,0,0,0,50,0],p4CIQ1Paid=[],p4CIQ1Jobs={"KUAT":1,"ROTI":0,"MICHAEL":3,"QTX":3,"PARTY GIRLS":3};
 const p2PanelCIQ=document.querySelector('#ciq'),p2PanelDS=document.querySelector('#ds');
 if(p2PanelCIQ&&p2PanelDS){
   const p2Ensure=(panel,klass,header)=>{
@@ -342,6 +343,38 @@ if(p2PanelCIQ&&p2PanelDS){
     let p3S=p3P.querySelector('.period-oct3-sum');
     if(!p3S){p3S=document.createElement('div');p3S.className='sum period-oct3-sum';p3P.appendChild(p3S)}
     p3S.innerHTML=p3Sum;
+  }
+  // November 1-10 is a new independent period; October and September records remain unchanged.
+  const p4Ensure=(panel,klass,header)=>{
+    let period=panel.querySelector('.'+klass);
+    if(!period){
+      period=document.createElement('div');
+      period.className='period '+klass;
+      period.innerHTML='<h2>1/11 - 10/11</h2>'+header;
+    }
+    if(panel.firstElementChild!==period)panel.insertBefore(period,panel.firstChild);
+    return period;
+  };
+  const p4CIQ=p4Ensure(p2PanelCIQ,'period-nov1-ciq','<div class="row h"><span>日期</span><span>工数</span><span>金额</span><span>PAID</span></div>');
+  const p4DS=p4Ensure(p2PanelDS,'period-nov1','<div class="row h dsrow"><span>日期</span><span>金额</span><span>PAID</span></div>');
+  let p4CRow1=p4CIQ.querySelector('.ciq1101');
+  if(!p4CRow1){
+    p4CRow1=document.createElement('div');
+    p4CRow1.className='row ciq1101';
+    p4CIQ.insertBefore(p4CRow1,p4CIQ.querySelector('.period-nov1-sum'));
+  }
+  p4CRow1.innerHTML='<span>1/11</span><span>'+(p4CIQ1Jobs[n]||0)+'</span><span>RM'+p4CIQ1[k]+'</span><span>'+(p4CIQ1Paid.includes(n)?'✅':'—')+'</span>';
+  const p4CR=[...p4CIQ.querySelectorAll('.row:not(.h)')];
+  const p4DR=[...p4DS.querySelectorAll('.dsrow:not(.h)')];
+  const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
+  const p4DA=p4DR.reduce((a,r)=>a+p2Num(r.children[1]?.textContent),0);
+  const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0)+p4DR.reduce((a,r)=>a+((r.children[2]?.textContent||'').includes('✅')?p2Num(r.children[1]?.textContent):0),0);
+  const p4Jobs=p4CR.reduce((a,r)=>a+p2Num(r.children[1]?.textContent),0);
+  const p4Sum='<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p><p><span>DS 金额</span><b>RM'+p4DA+'</b></p><p class="big"><span>CIQ + DS 总金额</span><span>RM'+(p4CA+p4DA)+'</span></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA+p4DA-p4Paid)+'</b></p>';
+  for(const p4P of [p4CIQ,p4DS]){
+    let p4S=p4P.querySelector('.period-nov1-sum');
+    if(!p4S){p4S=document.createElement('div');p4S.className='sum period-nov1-sum';p4P.appendChild(p4S)}
+    p4S.innerHTML=p4Sum;
   }
 }
 })();
