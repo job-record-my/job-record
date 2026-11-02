@@ -356,7 +356,12 @@ if(p2PanelCIQ&&p2PanelDS){
     return period;
   };
   const p4CIQ=p4Ensure(p2PanelCIQ,'period-nov1-ciq','<div class="row h"><span>日期</span><span>工数</span><span>金额</span><span>PAID</span></div>');
-  const p4DS=p4Ensure(p2PanelDS,'period-nov1','<div class="row h dsrow"><span>日期</span><span>金额</span><span>PAID</span></div>');
+  // XX preview: November is CIQ-only. Keep the DS tab for historical periods.
+  const p4DS=n==='XX'?null:p4Ensure(p2PanelDS,'period-nov1','<div class="row h dsrow"><span>日期</span><span>金额</span><span>PAID</span></div>');
+  if(n==='XX'){
+    const oldNovDS=p2PanelDS.querySelector('.period-nov1');
+    if(oldNovDS)oldNovDS.remove();
+  }
   let p4CRow1=p4CIQ.querySelector('.ciq1101');
   if(!p4CRow1){
     p4CRow1=document.createElement('div');
@@ -365,13 +370,15 @@ if(p2PanelCIQ&&p2PanelDS){
   }
   p4CRow1.innerHTML='<span>1/11</span><span>'+(p4CIQ1Jobs[n]||0)+'</span><span>RM'+p4CIQ1[k]+'</span><span>'+(p4CIQ1Paid.includes(n)?'✅':'—')+'</span>';
   const p4CR=[...p4CIQ.querySelectorAll('.row:not(.h)')];
-  const p4DR=[...p4DS.querySelectorAll('.dsrow:not(.h)')];
+  const p4DR=p4DS?[...p4DS.querySelectorAll('.dsrow:not(.h)')]:[];
   const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
   const p4DA=p4DR.reduce((a,r)=>a+p2Num(r.children[1]?.textContent),0);
   const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0)+p4DR.reduce((a,r)=>a+((r.children[2]?.textContent||'').includes('✅')?p2Num(r.children[1]?.textContent):0),0);
   const p4Jobs=p4CR.reduce((a,r)=>a+p2Num(r.children[1]?.textContent),0);
-  const p4Sum='<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p><p><span>DS 金额</span><b>RM'+p4DA+'</b></p><p class="big"><span>CIQ + DS 总金额</span><span>RM'+(p4CA+p4DA)+'</span></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA+p4DA-p4Paid)+'</b></p>';
-  for(const p4P of [p4CIQ,p4DS]){
+  const p4Sum=n==='XX'
+    ?'<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA-p4Paid)+'</b></p>'
+    :'<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p><p><span>DS 金额</span><b>RM'+p4DA+'</b></p><p class="big"><span>CIQ + DS 总金额</span><span>RM'+(p4CA+p4DA)+'</span></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA+p4DA-p4Paid)+'</b></p>';
+  for(const p4P of (p4DS?[p4CIQ,p4DS]:[p4CIQ])){
     let p4S=p4P.querySelector('.period-nov1-sum');
     if(!p4S){p4S=document.createElement('div');p4S.className='sum period-nov1-sum';p4P.appendChild(p4S)}
     p4S.innerHTML=p4Sum;
