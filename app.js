@@ -40,7 +40,7 @@ const p3DS21=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const p4CIQ2=[0,30,470,0,0,0,0,0,0,0,190,0,0,0,0,0,0,250,0,80,0,0,0,0,60,110,0,0,0,0,0,0,0,0,0,0,0,210,80,0,30,0,0,40,0,80,0],p4CIQ2Paid=[],p4CIQ2Jobs={"KUAT":0,"ROTI":0,"MICHAEL":3,"QTX":0,"PARTY GIRLS":1};
 const p4CIQ3=[30,80,0,0,0,0,0,0,0,0,180,50,0,0,0,0,0,250,0,120,0,0,0,0,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,450,0,0,0,0,0],p4CIQ3Paid=[],p4CIQ3Jobs={"KUAT":0,"ROTI":0,"MICHAEL":3,"QTX":0,"PARTY GIRLS":0};
 const p4CIQ4=[50,0,430,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0,80,0,0,0,0,0,0,0,50,0,50,0,0,60,0,0,0,0,0,0,0,30,530,0,0,0,40,0],p4CIQ4Paid=[],p4CIQ4Jobs={"KUAT":0,"ROTI":0,"MICHAEL":2,"QTX":0,"PARTY GIRLS":1};
-const p4CIQ1=[0,40,0,0,0,0,0,70,0,0,0,0,150,0,0,110,170,120,0,0,0,0,0,0,200,110,0,60,0,60,0,0,0,60,0,0,120,0,0,0,100,0,0,0,0,50,0],p4CIQ1Paid=[],p4CIQ1Jobs={"KUAT":1,"ROTI":0,"MICHAEL":3,"QTX":3,"PARTY GIRLS":3};
+const p4CIQ1=[0,40,0,0,0,0,0,70,0,0,0,0,150,0,0,110,170,120,0,0,0,0,0,0,200,110,0,60,0,60,0,0,0,60,0,0,120,0,0,0,100,0,0,0,0,50,0],p4CIQ1Paid=[],p4CIQ1Jobs={"KUAT":1,"ROTI":3,"MICHAEL":3,"QTX":3,"PARTY GIRLS":3};
 const p2PanelCIQ=document.querySelector('#ciq'),p2PanelDS=document.querySelector('#ds');
 if(p2PanelCIQ&&p2PanelDS){
   const p2Ensure=(panel,klass,header)=>{
