@@ -362,6 +362,7 @@ if(p2PanelCIQ&&p2PanelDS){
   // November and later periods are CIQ-only for every employee.
   // Preserve the historical DS tab and all prior-period DS records.
   const p4DS=p4Ensure(p2PanelDS,'period-nov1-ds','<div class="row h dsrow"><span>日期</span><span>金额</span><span>PAID</span></div>');
+  const p4CIQ5=[0,0,240,0,0,0,0,0,0,0,0,0,80,0,0,0,0,80,0,40,0,0,0,0,0,0,0,0,0,150,0,0,0,40,0,0,0,0,0,0,0,100,0,0,0,0,0],p4CIQ5Paid=[],p4CIQ5Jobs={"KUAT":0,"ROTI":2,"MICHAEL":2,"QTX":0,"PARTY GIRLS":0};
   let p4CRow1=p4CIQ.querySelector('.ciq1101');
   if(!p4CRow1){
     p4CRow1=document.createElement('div');
@@ -390,6 +391,13 @@ if(p2PanelCIQ&&p2PanelDS){
     p4CIQ.insertBefore(p4CRow4,p4CIQ.querySelector('.period-nov1-sum'));
   }
   p4CRow4.innerHTML='<span>4/11</span><span>'+(p4CIQ4Jobs[n]||0)+'</span><span>RM'+p4CIQ4[k]+'</span><span>'+(p4CIQ4Paid.includes(n)?'✅':'—')+'</span>';
+  let p4CRow5=p4CIQ.querySelector('.ciq1105');
+  if(!p4CRow5){
+    p4CRow5=document.createElement('div');
+    p4CRow5.className='row ciq1105';
+    p4CIQ.insertBefore(p4CRow5,p4CIQ.querySelector('.period-nov1-sum'));
+  }
+  p4CRow5.innerHTML='<span>5/11</span><span>'+(p4CIQ5Jobs[n]||0)+'</span><span>RM'+p4CIQ5[k]+'</span><span>'+(p4CIQ5Paid.includes(n)?'✅':'—')+'</span>';
   const p4CR=[...p4CIQ.querySelectorAll('.row:not(.h)')];
   const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
   const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0);
