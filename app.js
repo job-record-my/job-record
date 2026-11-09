@@ -361,7 +361,9 @@ if(p2PanelCIQ&&p2PanelDS){
   const p4CIQ=p4Ensure(p2PanelCIQ,'period-nov1-ciq','<div class="row h"><span>日期</span><span>工数</span><span>金额</span><span>PAID</span></div>');
   // November and later periods are CIQ-only for every employee.
   // Preserve the historical DS tab and all prior-period DS records.
-  const p4DS=p4Ensure(p2PanelDS,'period-nov1-ds','<div class="row h dsrow"><span>日期</span><span>金额</span><span>PAID</span></div>');
+  // No DS records or period summaries from November 2026 onward.
+  // Keep all October and earlier DS periods intact.
+  p2PanelDS.querySelectorAll('.period-nov1,.period-nov1-ds').forEach(period=>period.remove());
   const p4CIQ5=[0,0,240,0,0,0,0,0,0,0,0,0,80,0,0,0,0,80,0,40,0,0,0,0,0,0,0,0,0,150,0,0,0,40,0,0,0,0,0,0,0,100,0,0,0,0,0],p4CIQ5Paid=[],p4CIQ5Jobs={"KUAT":0,"ROTI":2,"MICHAEL":2,"QTX":0,"PARTY GIRLS":0};
   let p4CRow1=p4CIQ.querySelector('.ciq1101');
   if(!p4CRow1){
@@ -426,13 +428,10 @@ if(p2PanelCIQ&&p2PanelDS){
   const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
   const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0);
   const p4Jobs=p4CR.reduce((a,r)=>a+p2Num(r.children[1]?.textContent),0);
-  const p4Sum='<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p><p><span>DS 金额</span><b>RM0</b></p><p class="big"><span>CIQ + DS 总金额</span><span>RM'+p4CA+'</span></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA-p4Paid)+'</b></p>';
+  const p4Sum='<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA-p4Paid)+'</b></p>';
   let p4S=p4CIQ.querySelector('.period-nov1-sum');
   if(!p4S){p4S=document.createElement('div');p4S.className='sum period-nov1-sum';p4CIQ.appendChild(p4S)}
   p4S.innerHTML=p4Sum;
-  let p4DSum=p4DS.querySelector('.period-nov1-sum');
-  if(!p4DSum){p4DSum=document.createElement('div');p4DSum.className='sum period-nov1-sum';p4DS.appendChild(p4DSum)}
-  p4DSum.innerHTML=p4Sum;
 }
 })();
 if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(()=>navigator.serviceWorker.ready).catch(()=>{})}
