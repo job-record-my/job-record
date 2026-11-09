@@ -414,7 +414,7 @@ if(p2PanelCIQ&&p2PanelDS){
     p4CIQ.insertBefore(p4CRow7,p4CIQ.querySelector('.period-nov1-sum'));
   }
   p4CRow7.innerHTML='<span>7/11</span><span>'+(p4CIQ7Jobs[n]||0)+'</span><span>RM'+p4CIQ7[k]+'</span><span>'+(p4CIQ7Paid.includes(n)?'✅':'—')+'</span>';
-  const p4CIQ8=[0,40,180,0,0,0,0,130,0,0,260,230,0,0,40,220,0,370,0,100,0,0,0,0,0,0,0,0,0,100,0,0,370,0,0,0,40,140,0,0,160,0,0,0,0,50,0],p4CIQ8Paid=[],p4CIQ8Jobs={"KUAT":268,"ROTI":274,"MICHAEL":1420,"QTX":274,"PARTY GIRLS":490};
+  const p4CIQ8=[0,40,180,0,0,0,0,130,0,0,260,230,0,0,40,220,0,370,0,100,0,0,0,0,0,0,0,0,0,100,0,0,370,0,0,0,40,140,0,0,160,0,0,0,0,50,0],p4CIQ8Paid=[],p4CIQ8Jobs={"KUAT":1,"ROTI":0,"MICHAEL":8,"QTX":1,"PARTY GIRLS":4};
   let p4CRow8=p4CIQ.querySelector('.ciq1108');
   if(!p4CRow8){
     p4CRow8=document.createElement('div');
