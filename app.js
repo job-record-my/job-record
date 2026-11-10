@@ -434,7 +434,9 @@ if(p2PanelCIQ&&p2PanelDS){
   p4CRow9.innerHTML='<span>9/11</span><span>'+(p4CIQ9Jobs[n]||0)+'</span><span>RM'+p4CIQ9[k]+'</span><span>'+(p4CIQ9Paid.includes(n)?'✅':'—')+'</span>';
   const p4CR=[...p4CIQ.querySelectorAll('.row:not(.h)')];
   const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
-  const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0);
+  // Explicit admin payment for DI in 1/11-10/11/2026; not an SP red-cell PAID flag.
+  const p4ManualPaid=(n==='DI'?150:0);
+  const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0)+p4ManualPaid;
   const p4Jobs=p4CR.reduce((a,r)=>a+p2Num(r.children[1]?.textContent),0);
   const p4Sum='<p><span>CIQ 金额</span><b>RM'+p4CA+'</b></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p4Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p4Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p4CA-p4Paid)+'</b></p>';
   let p4S=p4CIQ.querySelector('.period-nov1-sum');
