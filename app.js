@@ -424,6 +424,14 @@ if(p2PanelCIQ&&p2PanelDS){
     p4CIQ.insertBefore(p4CRow8,p4CIQ.querySelector('.period-nov1-sum'));
   }
   p4CRow8.innerHTML='<span>8/11</span><span>'+(p4CIQ8Jobs[n]||0)+'</span><span>RM'+p4CIQ8[k]+'</span><span>'+(p4CIQ8Paid.includes(n)?'✅':'—')+'</span>';
+  const p4CIQ9=[0,0,0,0,40,0,0,160,0,0,0,0,0,0,40,140,160,330,0,0,0,0,0,0,0,0,0,50,0,0,0,0,0,60,0,0,130,0,0,0,90,120,0,0,0,0,0],p4CIQ9Paid=[],p4CIQ9Jobs={"KUAT":3,"ROTI":0,"MICHAEL":7,"QTX":3,"PARTY GIRLS":3};
+  let p4CRow9=p4CIQ.querySelector('.ciq1109');
+  if(!p4CRow9){
+    p4CRow9=document.createElement('div');
+    p4CRow9.className='row ciq1109';
+    p4CIQ.insertBefore(p4CRow9,p4CIQ.querySelector('.period-nov1-sum'));
+  }
+  p4CRow9.innerHTML='<span>9/11</span><span>'+(p4CIQ9Jobs[n]||0)+'</span><span>RM'+p4CIQ9[k]+'</span><span>'+(p4CIQ9Paid.includes(n)?'✅':'—')+'</span>';
   const p4CR=[...p4CIQ.querySelectorAll('.row:not(.h)')];
   const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
   const p4Paid=p4CR.reduce((a,r)=>a+((r.children[3]?.textContent||'').includes('✅')?p2Num(r.children[2]?.textContent):0),0);
