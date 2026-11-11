@@ -432,6 +432,14 @@ if(p2PanelCIQ&&p2PanelDS){
     p4CIQ.insertBefore(p4CRow9,p4CIQ.querySelector('.period-nov1-sum'));
   }
   p4CRow9.innerHTML='<span>9/11</span><span>'+(p4CIQ9Jobs[n]||0)+'</span><span>RM'+p4CIQ9[k]+'</span><span>'+(p4CIQ9Paid.includes(n)?'✅':'—')+'</span>';
+  const p4CIQ10=[0,70,210,0,0,0,0,50,0,70,0,0,100,0,150,40,70,240,0,40,0,0,0,0,0,0,0,0,0,100,0,0,0,0,0,0,40,460,0,0,210,0,0,0,0,0,0],p4CIQ10Paid=[],p4CIQ10Jobs={"KUAT":1,"ROTI":2,"MICHAEL":6,"QTX":1,"PARTY GIRLS":5};
+  let p4CRow10=p4CIQ.querySelector('.ciq1110');
+  if(!p4CRow10){
+    p4CRow10=document.createElement('div');
+    p4CRow10.className='row ciq1110';
+    p4CIQ.insertBefore(p4CRow10,p4CIQ.querySelector('.period-nov1-sum'));
+  }
+  p4CRow10.innerHTML='<span>10/11</span><span>'+(p4CIQ10Jobs[n]||0)+'</span><span>RM'+p4CIQ10[k]+'</span><span>'+(p4CIQ10Paid.includes(n)?'✅':'—')+'</span>';
   const p4CR=[...p4CIQ.querySelectorAll('.row:not(.h)')];
   const p4CA=p4CR.reduce((a,r)=>a+p2Num(r.children[2]?.textContent),0);
   // Explicit admin payment for DI in 1/11-10/11/2026; not an SP red-cell PAID flag.
