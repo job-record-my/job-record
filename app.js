@@ -450,6 +450,27 @@ if(p2PanelCIQ&&p2PanelDS){
   let p4S=p4CIQ.querySelector('.period-nov1-sum');
   if(!p4S){p4S=document.createElement('div');p4S.className='sum period-nov1-sum';p4CIQ.appendChild(p4S)}
   p4S.innerHTML=p4Sum;
+
+  // November second period is independent; preserve all earlier periods.
+  const p5CIQ11=[30,0,0,0,0,0,0,320,0,0,20,0,0,0,140,220,0,120,0,0,0,0,0,0,0,0,0,0,0,0,0,60,50,110,0,0,0,0,0,0,270,0,0,50,0,0,0],p5CIQ11Paid=[],p5CIQ11Jobs={"KUAT":1,"ROTI":0,"MICHAEL":3,"QTX":0,"PARTY GIRLS":4};
+  let p5CIQ=p2PanelCIQ.querySelector('.period-nov2-ciq');
+  if(!p5CIQ){
+    p5CIQ=document.createElement('div');
+    p5CIQ.className='period period-nov2-ciq';
+    p5CIQ.innerHTML='<h2>11/11 - 20/11</h2><div class="row h"><span>日期</span><span>工数</span><span>金额</span><span>PAID</span></div>';
+  }
+  if(p2PanelCIQ.firstElementChild!==p5CIQ)p2PanelCIQ.insertBefore(p5CIQ,p2PanelCIQ.firstChild);
+  let p5Row=p5CIQ.querySelector('.ciq1111');
+  if(!p5Row){p5Row=document.createElement('div');p5Row.className='row ciq1111';p5CIQ.appendChild(p5Row)}
+  p5Row.innerHTML='<span>11/11</span><span>'+(p5CIQ11Jobs[n]||0)+'</span><span>RM'+p5CIQ11[k]+'</span><span>'+(p5CIQ11Paid.includes(n)?'✅':'—')+'</span>';
+  const p5Rows=[...p5CIQ.querySelectorAll('.row:not(.h)')];
+  const p5Total=p5Rows.reduce((sum,row)=>sum+p2Num(row.children[2]?.textContent),0);
+  const p5Paid=p5Rows.reduce((sum,row)=>sum+((row.children[3]?.textContent||'').includes('✅')?p2Num(row.children[2]?.textContent):0),0);
+  const p5Jobs=p5Rows.reduce((sum,row)=>sum+p2Num(row.children[1]?.textContent),0);
+  let p5Sum=p5CIQ.querySelector('.period-nov2-sum');
+  if(!p5Sum){p5Sum=document.createElement('div');p5Sum.className='sum period-nov2-sum';p5CIQ.appendChild(p5Sum)}
+  p5Sum.innerHTML='<p><span>CIQ 金额</span><b>RM'+p5Total+'</b></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p5Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p5Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p5Total-p5Paid)+'</b></p>';
+
 }
 })();
 if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(()=>navigator.serviceWorker.ready).catch(()=>{})}
