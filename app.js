@@ -491,6 +491,10 @@ if(p2PanelCIQ&&p2PanelDS){
   let p5Row18=p5CIQ.querySelector('.ciq1118');
   if(!p5Row18){p5Row18=document.createElement('div');p5Row18.className='row ciq1118';p5CIQ.insertBefore(p5Row18,p5CIQ.querySelector('.period-nov2-sum'))}
   p5Row18.innerHTML='<span>18/11</span><span>'+(p5CIQ18Jobs[n]||0)+'</span><span>RM'+p5CIQ18[k]+'</span><span>'+(p5CIQ18Paid.includes(n)?'✅':'—')+'</span>';
+  const p5CIQ19=[0,80,60,0,0,0,0,0,50,0,0,0,0,0,0,0,40,210,0,110,0,0,0,0,30,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,0],p5CIQ19Paid=[],p5CIQ19Jobs={"KUAT":0,"ROTI":0,"MICHAEL":5,"QTX":0,"PARTY GIRLS":0};
+  let p5Row19=p5CIQ.querySelector('.ciq1119');
+  if(!p5Row19){p5Row19=document.createElement('div');p5Row19.className='row ciq1119';p5CIQ.insertBefore(p5Row19,p5CIQ.querySelector('.period-nov2-sum'))}
+  p5Row19.innerHTML='<span>19/11</span><span>'+(p5CIQ19Jobs[n]||0)+'</span><span>RM'+p5CIQ19[k]+'</span><span>'+(p5CIQ19Paid.includes(n)?'✅':'—')+'</span>';
   const p5Rows=[...p5CIQ.querySelectorAll('.row:not(.h)')];
   const p5Total=p5Rows.reduce((sum,row)=>sum+p2Num(row.children[2]?.textContent),0);
   const p5Paid=p5Rows.reduce((sum,row)=>sum+((row.children[3]?.textContent||'').includes('✅')?p2Num(row.children[2]?.textContent):0),0);
