@@ -501,7 +501,9 @@ if(p2PanelCIQ&&p2PanelDS){
   p5Row20.innerHTML='<span>20/11</span><span>'+(p5CIQ20Jobs[n]||0)+'</span><span>RM'+p5CIQ20[k]+'</span><span>'+(p5CIQ20Paid.includes(n)?'✅':'—')+'</span>';
   const p5Rows=[...p5CIQ.querySelectorAll('.row:not(.h)')];
   const p5Total=p5Rows.reduce((sum,row)=>sum+p2Num(row.children[2]?.textContent),0);
-  const p5Paid=p5Rows.reduce((sum,row)=>sum+((row.children[3]?.textContent||'').includes('✅')?p2Num(row.children[2]?.textContent):0),0);
+  // Explicit admin-paid amount for DI in 11/11-20/11/2026, independent of SP cell colors.
+  const p5ManualPaid=(n==='DI'?400:0);
+  const p5Paid=p5Rows.reduce((sum,row)=>sum+((row.children[3]?.textContent||'').includes('✅')?p2Num(row.children[2]?.textContent):0),0)+p5ManualPaid;
   const p5Jobs=p5Rows.reduce((sum,row)=>sum+p2Num(row.children[1]?.textContent),0);
   let p5Sum=p5CIQ.querySelector('.period-nov2-sum');
   if(!p5Sum){p5Sum=document.createElement('div');p5Sum.className='sum period-nov2-sum';p5CIQ.appendChild(p5Sum)}
