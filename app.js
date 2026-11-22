@@ -509,6 +509,28 @@ if(p2PanelCIQ&&p2PanelDS){
   if(!p5Sum){p5Sum=document.createElement('div');p5Sum.className='sum period-nov2-sum';p5CIQ.appendChild(p5Sum)}
   p5Sum.innerHTML='<p><span>CIQ 金额</span><b>RM'+p5Total+'</b></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p5Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p5Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p5Total-p5Paid)+'</b></p>';
 
+
+  // New CIQ-only period: 21 November through 30 November 2026.
+  // Previous November periods and their manual payment adjustments remain untouched.
+  const p6CIQ21=[40,40,50,0,0,0,0,0,0,0,340,0,100,0,0,60,0,290,0,60,0,0,0,0,100,0,0,120,0,0,0,0,0,0,0,0,80,240,0,0,300,210,0,0,0,0,0],p6CIQ21Paid=[],p6CIQ21Jobs={"KUAT":0,"ROTI":2,"MICHAEL":6,"QTX":2,"PARTY GIRLS":8};
+  let p6CIQ=p2PanelCIQ.querySelector('.period-nov3-ciq');
+  if(!p6CIQ){
+    p6CIQ=document.createElement('div');
+    p6CIQ.className='period period-nov3-ciq';
+    p6CIQ.innerHTML='<h2>21/11 - 30/11</h2><div class="row h"><span>日期</span><span>工数</span><span>金额</span><span>PAID</span></div>';
+  }
+  if(p2PanelCIQ.firstElementChild!==p6CIQ)p2PanelCIQ.insertBefore(p6CIQ,p2PanelCIQ.firstChild);
+  let p6Row=p6CIQ.querySelector('.ciq1121');
+  if(!p6Row){p6Row=document.createElement('div');p6Row.className='row ciq1121';p6CIQ.appendChild(p6Row)}
+  p6Row.innerHTML='<span>21/11</span><span>'+(p6CIQ21Jobs[n]||0)+'</span><span>RM'+p6CIQ21[k]+'</span><span>'+(p6CIQ21Paid.includes(n)?'✅':'—')+'</span>';
+  const p6Rows=[...p6CIQ.querySelectorAll('.row:not(.h)')];
+  const p6Total=p6Rows.reduce((sum,row)=>sum+p2Num(row.children[2]?.textContent),0);
+  const p6Paid=p6Rows.reduce((sum,row)=>sum+((row.children[3]?.textContent||'').includes('✅')?p2Num(row.children[2]?.textContent):0),0);
+  const p6Jobs=p6Rows.reduce((sum,row)=>sum+p2Num(row.children[1]?.textContent),0);
+  let p6Sum=p6CIQ.querySelector('.period-nov3-sum');
+  if(!p6Sum){p6Sum=document.createElement('div');p6Sum.className='sum period-nov3-sum';p6CIQ.appendChild(p6Sum)}
+  p6Sum.innerHTML='<p><span>CIQ 金额</span><b>RM'+p6Total+'</b></p>'+(stage?'<p><span>CIQ 工数</span><b>'+p6Jobs+' JOB</b></p>':'')+'<p><span>已 PAID</span><b>RM'+p6Paid+'</b></p><p><span>还剩金额</span><b>RM'+(p6Total-p6Paid)+'</b></p>';
+
 }
 })();
 if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(()=>navigator.serviceWorker.ready).catch(()=>{})}
