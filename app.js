@@ -531,7 +531,7 @@ if(p2PanelCIQ&&p2PanelDS){
   let p6Row23=p6CIQ.querySelector('.ciq1123');
   if(!p6Row23){p6Row23=document.createElement('div');p6Row23.className='row ciq1123';p6CIQ.insertBefore(p6Row23,p6CIQ.querySelector('.period-nov3-sum'))}
   p6Row23.innerHTML='<span>23/11</span><span>'+(p6CIQ23Jobs[n]||0)+'</span><span>RM'+p6CIQ23[k]+'</span><span>'+(p6CIQ23Paid.includes(n)?'✅':'—')+'</span>';
-  const p6CIQ24=[0,0,50,0,0,0,0,0,0,50,30,0,0,0,0,0,0,570,0,170,0,0,0,0,30,0,0,0,0,50,0,0,0,20,0,0,80,90,60,0,220,0,0,0,0,80,0],p6CIQ24Paid=["KIKI"],p6CIQ24Jobs={"KUAT":0,"ROTI":0,"MICHAEL":14,"QTX":2,"PARTY GIRLS":6};
+  const p6CIQ24=[0,0,50,0,0,0,0,0,0,50,30,0,0,0,0,0,0,570,0,170,0,0,0,0,30,0,0,0,0,50,0,0,0,20,0,0,80,90,60,0,230,0,0,0,0,80,0],p6CIQ24Paid=["KIKI"],p6CIQ24Jobs={"KUAT":0,"ROTI":0,"MICHAEL":14,"QTX":2,"PARTY GIRLS":5};
   let p6Row24=p6CIQ.querySelector('.ciq1124');
   if(!p6Row24){p6Row24=document.createElement('div');p6Row24.className='row ciq1124';p6CIQ.insertBefore(p6Row24,p6CIQ.querySelector('.period-nov3-sum'))}
   p6Row24.innerHTML='<span>24/11</span><span>'+(p6CIQ24Jobs[n]||0)+'</span><span>RM'+p6CIQ24[k]+'</span><span>'+(p6CIQ24Paid.includes(n)?'✅':'—')+'</span>';
