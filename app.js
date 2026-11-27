@@ -539,6 +539,10 @@ if(p2PanelCIQ&&p2PanelDS){
   let p6Row25=p6CIQ.querySelector('.ciq1125');
   if(!p6Row25){p6Row25=document.createElement('div');p6Row25.className='row ciq1125';p6CIQ.insertBefore(p6Row25,p6CIQ.querySelector('.period-nov3-sum'))}
   p6Row25.innerHTML='<span>25/11</span><span>'+(p6CIQ25Jobs[n]||0)+'</span><span>RM'+p6CIQ25[k]+'</span><span>'+(p6CIQ25Paid.includes(n)?'✅':'—')+'</span>';
+  const p6CIQ26=[70,120,0,0,0,0,0,50,0,0,340,0,50,0,0,0,50,570,0,0,0,0,0,0,0,0,0,0,0,60,0,0,0,90,0,0,160,0,0,0,190,50,0,0,0,50,0],p6CIQ26Paid=[],p6CIQ26Jobs={"KUAT":1,"ROTI":0,"MICHAEL":14,"QTX":4,"PARTY GIRLS":5};
+  let p6Row26=p6CIQ.querySelector('.ciq1126');
+  if(!p6Row26){p6Row26=document.createElement('div');p6Row26.className='row ciq1126';p6CIQ.insertBefore(p6Row26,p6CIQ.querySelector('.period-nov3-sum'))}
+  p6Row26.innerHTML='<span>26/11</span><span>'+(p6CIQ26Jobs[n]||0)+'</span><span>RM'+p6CIQ26[k]+'</span><span>'+(p6CIQ26Paid.includes(n)?'✅':'—')+'</span>';
   const p6Rows=[...p6CIQ.querySelectorAll('.row:not(.h)')];
   const p6Total=p6Rows.reduce((sum,row)=>sum+p2Num(row.children[2]?.textContent),0);
   const p6Paid=p6Rows.reduce((sum,row)=>sum+((row.children[3]?.textContent||'').includes('✅')?p2Num(row.children[2]?.textContent):0),0);
